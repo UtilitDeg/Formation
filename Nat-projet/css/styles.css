@@ -1,0 +1,99 @@
+body {
+  background-color: #273139;
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #273139;
+  color: #ffffff;
+  border: 1px solid #3a4651;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #3a4651;
+  text-align: left;
+}
+
+th {
+  background-color: #2f3b46;
+}
+
+tr:hover {
+  background-color: #36424d;
+}
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.page-title {
+    margin: 0;
+    font-size: 24px;
+}
+.button-group {
+    display: flex;
+    gap: 3px;
+}
+* {
+	box-sizing: border-box;
+}
+
+
+
+.btn-button-group, .button-group {
+	background-color: #273139;
+	border-radius: 4px;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.btn, .btn-two {
+	margin: 3px;
+}
+
+a[class*="btn"] {text-decoration: none;}
+input[class*="btn"], 
+button[class*="btn"] {border: 0;}
+
+
+/* /* Colors for .btn and .btn-two */
+.btn.blue, .btn-two.blue     {background-color: #7fb1bf;}
+.btn.green, .btn-two.green   {background-color: #9abf7f;}
+.btn.red, .btn-two.red       {background-color: #fa5a5a;}
+.btn.default, .btn-two.default   {background-color: #273139;}
+
+ .rounded {
+  border-radius: 10px;
+}
+
+/* Button two - I have no creativity for names */
+ .btn-two {
+	color: white;	
+	padding: 8px 25px;
+	display: inline-block;
+	border: 1px solid rgba(0,0,0,0.21);
+	border-bottom-color: rgba(0,0,0,0.34);
+	text-shadow:0 1px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
+				      0 2px 0 -1px rgba(0,0,0,0.13), 
+				      0 3px 0 -1px rgba(0,0,0,0.08), 
+				      0 3px 13px -1px rgba(0,0,0,0.21);
+}
+.btn-two:active {
+	top: 1px;
+	border-color: rgba(0,0,0,0.34) rgba(0,0,0,0.21) rgba(0,0,0,0.21);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.89),0 1px rgba(0,0,0,0.05) inset;
+	position: relative;
+}

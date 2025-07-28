@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Réservations DHCP</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <script src="./js/jquery-3.6.0.min.js"></script>
+  <script src="./js/v3.js" defer></script>
+</head>
+<body>
+  <div class="header-bar">
+    <h1 class="page-title">Gestion des réservations DHCP</h1>
+    <div class="button-group">
+      <a href="index.html" class="btn-two default rounded">Retour à la V1</a>
+    </div>
+  </div>
+
+  <form id="add-form">
+    <input type="text" name="hostname" placeholder="Nom d'hôte" required />
+    <input type="text" name="mac" placeholder="Adresse MAC" required />
+    <input type="text" name="ip" placeholder="Adresse IP" required />
+    <button class="btn-two green rounded" type="submit">Ajouter</button>
+  </form>
+
+  <table id="reservation-table">
+    <thead>
+      <tr>
+        <th>Nom d'hôte</th>
+        <th>Adresse MAC</th>
+        <th>Adresse IP</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="status-message"></div>
+</body>
+</html>

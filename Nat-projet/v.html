@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des clients DHCP</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/v1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+<body>
+    <h1>Liste des clients DHCP</h1>
+    <link rel="stylesheet" href="./css/styles.css">
+    <div class="button-group">
+       <a href="#" id="restart-dhcp" class="btn-two red rounded">Redémarrer DHCP</a>
+      <a href="#" id="stop-dhcp" class="btn-two default rounded">Arrêter DHCP</a>
+      <a href="v2.html" class="btn-two default rounded">Configuration</a>
+      <a href="v3.html" class="btn-two default rounded">Réservations</a>
+    </div> 
+    
+    <table id="dhcp-table">
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>MAC</th>
+                <th>Hostname</th>
+                <th>Début</th>
+                <th>Fin</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+<div id="status-message"></div>
+
+<div id="status-message"></div>
+
+    <script>
+        fetch('php/clients.php') // le script PHP plus haut
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.querySelector("#dhcp-table tbody");
+                data.forEach(client => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${client.ip}</td>
+                        <td>${client.mac}</td>
+                        <td>${client.hostname}</td>
+                        <td>${client.start}</td>
+                        <td>${client.end}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            });
+    </script>
+</body>
+</html>

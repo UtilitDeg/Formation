@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DHCP Configuration – V2</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="./js/v2.js"></script>
+    <style>
+        textarea {
+            width: 100%;
+            height: 400px;
+            font-family: monospace;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #status {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modifier la configuration DHCP (V2)</h1>
+    <link rel="stylesheet" href="./css/styles.css">
+    <div class="header-bar">
+        <h1 class="page-title">Édition de la Configuration DHCP</h1>
+        <div class="button-group">
+           <a href="#" id="btn-load" class="btn-two default rounded">Charger</a>
+           <a href="#" id="btn-save" class="btn-two default rounded">Enregistrer</a>
+           <a href="#" id="btn-reload" class="btn-two default rounded">Recharger</a>
+           <a href="v.html" class="btn-two green rounded">Retour<<</a>
+        </div>
+    </div>
+
+    <textarea id="dhcp-config">Chargement...</textarea>
+    <div id="status"></div>
+
+    <script>
+        function loadConfig() {
+            fetch('php/config.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("dhcp-config").value = data.config;
+                        setStatus("Configuration chargée.", "green");
+                    } else {
+                        setStatus(data.message, "red");
+                    }
+                })
+                .catch(err => {
+                    setStatus("Erreur de chargement.", "red");
+                    console.error(err);
+                });
+        }
+
+        function saveConfig() {
+            const newConfig = document.getElementById("dhcp-config").value;
+
+            fetch('php/save_config.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ config: newConfig })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        setStatus(data.message, "green");
+                    } else {
+                        setStatus(data.message, "red");
+                    }
+                })
+                .catch(err => {
+                    setStatus("Erreur lors de l'enregistrement.", "red");
+                    console.error(err);
+                });
+        }
+
+        function setStatus(message, color) {
+            const status = document.getElementById("status");
+            status.textContent = message;
+            status.style.color = color;
+        }
+
+        // Charger automatiquement au départ
+        loadConfig();
+    </script>
+</body>
+</html>
